@@ -1,7 +1,7 @@
 {
   "name": "gridsome-source-hashnode-devblog",
   "version": "0.1.0",
-  "description": "Hashnode devblog source for Gridsome",
+  "description": "Gridsome plugin to retrieve blog posts from your devblog on hashnode.",
   "main": "index.js",
   "repository": {
     "type": "git",
