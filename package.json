@@ -1,0 +1,27 @@
+{
+  "name": "gridsome-source-hashnode-devblog",
+  "version": "1.0.0",
+  "description": "Hashnode devblog source for Gridsome",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishantwrp/gridsome-source-hashnode-devblog.git"
+  },
+  "keywords": [
+    "gridsome",
+    "plugin",
+    "source",
+    "hashnode",
+    "gridsome-plugin",
+    "devblog"
+  ],
+  "author": "Nishant Mittal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishantwrp/gridsome-source-hashnode-devblog/issues"
+  },
+  "homepage": "https://github.com/nishantwrp/gridsome-source-hashnode-devblog#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
