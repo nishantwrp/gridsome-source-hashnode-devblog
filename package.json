@@ -1,6 +1,6 @@
 {
   "name": "gridsome-source-hashnode-devblog",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Hashnode devblog source for Gridsome",
   "main": "index.js",
   "repository": {
