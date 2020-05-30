@@ -37,7 +37,8 @@ module.exports = {
 ```
 
 ## Example Query
-```
+
+```graphql
 query {
   allDevblogPost {
     edges {
