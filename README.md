@@ -29,7 +29,7 @@ module.exports = {
       use:  'gridsome-source-hashnode-devblog',
       options: {
         username:  '', // Your username on hashnode
-        typeName:  'HashnodeDevblog' // Optional
+        typeName:  'DevblogPost' // Optional
       }
     }
   ]
@@ -39,7 +39,7 @@ module.exports = {
 ## Example Query
 ```
 query {
-  allHashnodeDevblog {
+  allDevblogPost {
     edges {
       node {
         title

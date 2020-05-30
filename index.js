@@ -4,7 +4,7 @@ class HashnodeDevblogSource {
   static defaultOptions() {
     return {
       username: '',
-      typeName: 'HashnodeDevblog',
+      typeName: 'DevblogPost',
     }
   }
 
@@ -13,7 +13,13 @@ class HashnodeDevblogSource {
   async getCuidsForAllPosts() {
     let query = `query{ user(username: "` + this.options.username + `") {publication {posts { cuid }}}}`;
     let { data } = await axios.post(this.HASHNODE_API_URL, {query: query});
-    let posts = await data.data.user.publication.posts;
+    let publication = data.data.user.publication;
+
+    if (!publication) {
+      throw new Error('No publications found for this user.');
+    }
+
+    let posts = publication.posts;
 
     let allCuids = []
     for (let post of posts) {
@@ -28,6 +34,11 @@ class HashnodeDevblogSource {
   }
 
   async getAllPostDetails(allCuids) {
+    if (!allCuids.length) {
+      console.warn('No posts found in the devblog.');
+      return [];
+    }
+
     let query = `query{`;
 
     for (let cuid of allCuids) {
