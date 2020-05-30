@@ -1,6 +1,6 @@
 
 <p align="center">
-    <a href="https://www.npmjs.com/package/gridsome-plugin-pwa">
+    <a href="https://www.npmjs.com/package/gridsome-source-hashnode-devblog">
       <img src="https://gridsome.org/logos/logo-circle-light.svg" alt="gridsome logo" width="100px"/>
     </a>
     <h1 align="center">gridsome-source-hashnode-devblog</h1>
