@@ -10,8 +10,8 @@ class HashnodeDevblogSource {
 
   HASHNODE_API_URL = 'https://api.hashnode.com/';
 
-  async getCuidsForAllPosts() {
-    let query = `query{ user(username: "` + this.options.username + `") {publication {posts { cuid }}}}`;
+  async getAllPosts() {
+    let query = `query { user(username: "` + this.options.username + `") { publication { posts { cuid slug title type dateUpdated dateAdded contentMarkdown brief coverImage tags { name }}}}}`;
     let { data } = await axios.post(this.HASHNODE_API_URL, {query: query});
     let publication = data.data.user.publication;
 
@@ -19,44 +19,7 @@ class HashnodeDevblogSource {
       throw new Error('No publications found for this user.');
     }
 
-    let posts = publication.posts;
-
-    let allCuids = []
-    for (let post of posts) {
-      allCuids.push(post.cuid);
-    }
-
-    return allCuids;
-  }
-
-  getQueryForSinglePostDetail(cuid) {
-    return cuid + `:` + `post(cuid: "` + cuid + `") { slug title type dateUpdated dateAdded contentMarkdown content brief coverImage tags { name }}`;
-  }
-
-  async getAllPostDetails(allCuids) {
-    if (!allCuids.length) {
-      console.warn('No posts found in the devblog.');
-      return [];
-    }
-
-    let query = `query{`;
-
-    for (let cuid of allCuids) {
-      query += this.getQueryForSinglePostDetail(cuid);
-    }
-
-    query += '}';
-
-    let { data } = await axios.post(this.HASHNODE_API_URL, {query: query});
-    data = data.data;
-
-    let posts = [];
-
-    for (let postCuid in data) {
-      posts.push(data[postCuid]);
-    }
-
-    return posts;
+    return publication.posts;
   }
 
   constructor(api, options = HashnodeDevblogSource.defaultOptions()) {
@@ -71,8 +34,7 @@ class HashnodeDevblogSource {
         typeName: this.options.typeName
       });
 
-      const allCuids = await this.getCuidsForAllPosts();
-      const posts = await this.getAllPostDetails(allCuids);
+      const posts = await this.getAllPosts();
 
       for (let post of posts) {
         contentType.addNode(post);
